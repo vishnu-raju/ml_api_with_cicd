@@ -1,4 +1,4 @@
-name: CI
+name: Continuos Delivery
 
 # Run this workflow every time a commit gets pushed to main or a pull request gets opened against main
 on:
