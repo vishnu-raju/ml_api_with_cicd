@@ -56,6 +56,7 @@ def predict():
 
     try:
         clf = joblib.load("boston_housing_prediction.joblib")
+        print(clf)
     except:
         LOG.info("JSON payload: %s json_payload")
         return "Model not loaded"
@@ -65,6 +66,7 @@ def predict():
     inference_payload = pd.DataFrame(json_payload)
     LOG.info("inference payload DataFrame: %s inference_payload")
     scaled_payload = scale(inference_payload)
+    clf=clf[0][0]
     prediction = list(clf.predict(scaled_payload))
     return jsonify({'prediction': prediction})
 
