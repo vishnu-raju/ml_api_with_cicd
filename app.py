@@ -13,8 +13,8 @@ LOG.setLevel(logging.INFO)
 def scale(payload):
     """Scales Payload"""
 
-    LOG.info("Scaling Payload: %s payload")
-    scaler = StandardScaler().fit(payload)
+    LOG.info(f"Scaling Payload: {payload}")
+    scaler = StandardScaler(with_mean=False).fit(payload)
     scaled_adhoc_predict = scaler.transform(payload)
     return scaled_adhoc_predict
 
@@ -56,17 +56,16 @@ def predict():
 
     try:
         clf = joblib.load("boston_housing_prediction.joblib")
-        print(clf)
+        clf = clf[0][0]
     except:
-        LOG.info("JSON payload: %s json_payload")
+        LOG.info(f"JSON payload: {json_payload}")
         return "Model not loaded"
 
     json_payload = request.json
-    LOG.info("JSON payload: %s json_payload")
+    LOG.info(f"JSON payload: {json_payload}")
     inference_payload = pd.DataFrame(json_payload)
-    LOG.info("inference payload DataFrame: %s inference_payload")
+    LOG.info(f"inference payload DataFrame: {inference_payload}")
     scaled_payload = scale(inference_payload)
-    clf=clf[0][0]
     prediction = list(clf.predict(scaled_payload))
     return jsonify({'prediction': prediction})
 
