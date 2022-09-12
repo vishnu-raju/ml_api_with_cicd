@@ -26,41 +26,61 @@ In order to recreate the CICD pipeline, follow the steps detailed below.
 ![Cloning into Azure Cloud Shell](./images/cloning.png)
 
 * Create a virtual environment using the Make command and then activate it
-`make setup`
-`source ~/.mlapi/bin/activate`
+```
+make setup
+```
+```
+source ~/.mlapi/bin/activate
+```
 ![Create virtual environment](./images/create_virtual_env.png)
 
 * Install dependencies required to run the app
-`make install`
+```
+make install
+```
 ![Install dependencies](./images/install_dependencies.png)
 
 * Lint code and run unit test to confirm it's working
-`make lint`
-`make test`
+```
+make lint
+```
+```
+make test
+```
 ![Lint and Test](./images/lint_and_test.png)
 
 NOTE: All of the above commands can be run at once using `make all`
 
 * Run the app locally on one terminal and test by making an API call from another terminal
-`python app.py`
+```
+python app.py
+```
 ![Run app locally](./images/run_app_locally.png)
 
-`sh ./make_prediction.sh`
+```
+sh ./make_prediction.sh
+```
 ![Make API call to locally run app](./images/run_prediction_locally.png)
 
 * Now, that the app is succesfully running locally, it can be deployed as an Azure WebApp and make requests to the API
-`az webapp up --name <app_name> --resource-group <resource_group_name> --runtime "PYTHON:3.7"`
+```
+az webapp up --name <app_name> --resource-group <resource_group_name> --runtime "PYTHON:3.7"
+```
 ![Deploy as WebApp](./images/deploy_as_webapp.png)
 
 ![App Home Page](./images/app_home_page.png)
 
 Once the application is deployed, we can make an API request using the command
 NOTE: Change the url in the file 'make_predict_azure_app.sh'
-`sh ./make_predict_azure_app.sh` 
+```
+sh ./make_predict_azure_app.sh
+``` 
 ![Make request to the WebApp](./images/prediction_from_webapp.png)
 
 Logs from the webapp can be viewed using the command
-`az webapp log tail`
+```
+az webapp log tail
+```
 ![Logs from the WebApp](./images/webapp_logs.png)
 
 
