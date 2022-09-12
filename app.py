@@ -58,7 +58,7 @@ def predict():
         clf = joblib.load("boston_housing_prediction.joblib")
         clf = clf[0][0]
     except:
-        LOG.info(f"JSON payload: {json_payload}")
+        LOG.info("JSON payload: %s json_payload")
         return "Model not loaded"
 
     json_payload = request.json
