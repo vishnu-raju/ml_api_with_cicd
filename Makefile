@@ -1,5 +1,6 @@
 setup:
 	python3 -m venv ~/.mlapi
+	source ~/.mlapi/bin/activate
 
 install:
 	pip install --upgrade pip &&\
