@@ -83,32 +83,36 @@ az webapp log tail
 ```
 ![Logs from the WebApp](./images/webapp_logs.png)
 
+Azure pipeline can now be configured for the webapp as detailed below:
+[Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
 
-<TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
+* Create a Devops Project
+![Devops Project](./images/devops_project.png)
 
-* Successful deploy of the project in Azure Pipelines.  [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+* Create a Service Connection
+![Service Connection](./images/service_connection.png)
 
-* Running Azure App Service from Azure Pipelines automatic deployment
+* Create a Agent Pool
+![Agent Pool](./images/create_agent_pool.png)
 
-* Successful prediction from deployed flask app in Azure Cloud Shell.  [Use this file as a template for the deployed prediction](https://github.com/udacity/nd082-Azure-Cloud-DevOps-Starter-Code/blob/master/C2-AgileDevelopmentwithAzure/project/starter_files/flask-sklearn/make_predict_azure_app.sh).
-The output should look similar to this:
+* Create Azure Pipeline
+![Azure Pipeline](./images/create_pipeline.png)
 
-```bash
-udacity@Azure:~$ ./make_predict_azure_app.sh
-Port: 443
-{"prediction":[20.35373177134412]}
-```
+* Run Pipeline to deploy the WebApp / Commit new features to the 'main' branch, which will automatically trigger the pipeline
+![Deploy using Pipeline](./images/run_pipeline_to_deploy.png)
 
-* Output of streamed log files from deployed application
-
-> 
+* Load test using Locust
+![Load Test](./images/load_test_locust.png)
 
 ## Enhancements
+Several improvements can be made to this project, some of the ideas are:
 
-<TODO: A short description of how to improve the project in the future>
+* Currently the 'main' branch is unprotected. This branch can be setup such that additions can only be made using Pull Requests
+* Instead of using Azure Pipelines, GitHub actions itself can be used to setup continuos delivery/deployment
+* This app can be containerized as a Docker app and be deployed using Kubernetes
 
 ## Demo 
 
-<TODO: Add link Screencast on YouTube>
+https://www.youtube.com/watch?v=Vs4AUya_4g8
 
 
